@@ -17,7 +17,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           branch: master
-          base: release
+          base: main
           
       - name: Request review
         uses: actions/github-script@v6
@@ -28,5 +28,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: ${{ steps.find-pull-request.outputs.number }},
-              reviewers: [ "${{ github.actor }}" ]
+              reviewers: [context.actor]
             })
