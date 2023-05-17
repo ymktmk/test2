@@ -16,8 +16,8 @@ jobs:
         id: find-pull-request
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          branch: master
-          base: main
+          branch: main
+          base: master
           
       - name: Request review
         uses: actions/github-script@v6
