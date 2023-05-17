@@ -10,7 +10,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
       # - name: Find pull request
       #   uses: juliangruber/find-pull-request-action@v1
       #   id: find-pull-request
