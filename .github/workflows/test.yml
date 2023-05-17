@@ -14,10 +14,14 @@ jobs:
         run: |
           tag=${{ github.ref }}
           tag=${tag/refs\/tags\//}
-          echo "Tag number: $tag"
-          
-      # - name: Echo
-      #   run: |
-      #     echo $TAG
-      #   env:
-      #     TAG: ${{ github.ref/refs\/tags\//}}
+          echo "TAG=$stg" >> $GITHUB_ENV
+
+      - name: Update
+        uses: mikefarah/yq@v4.30.8
+        with:
+          cmd: |
+            yq -i '.spec.source.targetRevision = env(TAG)' /github/workspace/test.yml
+      
+      - name: cat
+        run: |
+         cat test.yml
