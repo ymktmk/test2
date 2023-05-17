@@ -16,8 +16,8 @@ jobs:
           tag=${tag/refs\/tags\//}
           echo "Tag number: $tag"
           
-      - name: Echo
-        run: |
-          echo $TAG
-        env:
-          TAG: ${{ github.ref/refs\/tags\//}}
+      # - name: Echo
+      #   run: |
+      #     echo $TAG
+      #   env:
+      #     TAG: ${{ github.ref/refs\/tags\//}}
