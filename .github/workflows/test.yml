@@ -10,6 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Extract tag number
+        run: |
+          tag=${{ github.ref }}
+          tag=${tag/refs\/tags\//}
+          echo "Tag number: $tag"
+          
       - name: Echo
         run: |
           echo $TAG
