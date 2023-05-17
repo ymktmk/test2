@@ -28,5 +28,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: ${{ steps.find-pull-request.outputs.number }},
-              reviewers: ["github.actor"]
+              reviewers: [context.actor]
             })
