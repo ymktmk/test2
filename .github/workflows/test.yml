@@ -1,0 +1,17 @@
+name: TEST
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Echo
+        run: |
+          echo $TAG
+        env:
+          TAG: ${{ github.ref/refs\/tags\//}}
