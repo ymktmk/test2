@@ -2,7 +2,7 @@ name: CI test
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -11,13 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Find pull request
-        uses: juliangruber/find-pull-request-action@v1
-        id: find-pull-request
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
-          base: master
+      # - name: Find pull request
+      #   uses: juliangruber/find-pull-request-action@v1
+      #   id: find-pull-request
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     branch: main
+      #     base: master
           
       - name: Request review
         uses: actions/github-script@v6
@@ -27,6 +27,6 @@ jobs:
             github.rest.pulls.requestReviewers({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: ${{ steps.find-pull-request.outputs.number }},
+              pull_number: 8,
               reviewers: [context.actor]
             })
