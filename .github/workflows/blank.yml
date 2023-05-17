@@ -27,6 +27,6 @@ jobs:
             github.rest.pulls.requestReviewers({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: 8,
+              pull_number: 9,
               reviewers: [context.actor]
             })
