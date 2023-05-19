@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Extract tag number
+      
+      - name: Set tag number
         run: |
           tag=${{ github.ref }}
           tag=${tag/refs\/tags\//}
@@ -25,3 +26,13 @@ jobs:
       - name: cat
         run: |
          cat test.yml
+
+      - name: Git Commit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.email "test@gmail.com"
+          git config --global user.name "test"
+          git add .
+          git commit -m "Update"
+          git push origin main
