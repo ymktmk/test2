@@ -1,0 +1,44 @@
+name: TEST desu
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        # with:
+        #   ref: main
+
+      - name: Set tag number
+        run: |
+          git branch
+      
+      - name: Set tag number
+        run: |
+          tag=${{ github.ref }}
+          tag=${tag/refs\/tags\//}
+          echo "TAG=$tag" >> $GITHUB_ENV
+
+      - name: Update
+        uses: mikefarah/yq@v4.30.8
+        with:
+          cmd: |
+            yq -i '.spec.source.targetRevision = env(TAG)' /github/workspace/test.yml
+      
+      - name: cat
+        run: |
+         cat test.yml
+
+      - name: Git Commit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.email "test@gmail.com"
+          git config --global user.name "test"
+          git add .
+          git commit -m "Update"
+          git push origin main

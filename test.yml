@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-workflows-in-app-repo
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argo-workflows-in-app-repo
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  source:
+    path: kubernetes/argo-workflows/overlays/prd
+    targetRevision: v1.6.0
